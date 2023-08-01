@@ -3,13 +3,13 @@
 set -e
 
 # check for Nargo.toml file
-if [ -f Nargo.toml ]; then
+if [ -f $1/Nargo.toml ]; then
   echo "rust-noir"
   exit 0
 fi
 
-# check for 'nargo' command in main.rs file
-if [ -f main.rs ] && grep -q 'nargo' main.rs; then
+# check for 'nargo' command in all files
+if grep -rq 'nargo' $1; then
   echo "rust-noir"
   exit 0
 fi
