@@ -4,13 +4,6 @@ set -e
 
 BUILD_DIR=$1
 
-# Verify and install Rust if needed
-if ! command -v rustc &> /dev/null
-then
-    echo "Rust could not be found. Installing..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-fi
-
 # Verify and install Nargo if needed
 if ! command -v nargo &> /dev/null
 then
