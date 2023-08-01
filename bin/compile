@@ -1,0 +1,28 @@
+#!/bin/sh
+# fail fast
+set -e
+
+BUILD_DIR=$1
+
+# Verify and install Rust if needed
+if ! command -v rustc &> /dev/null
+then
+    echo "Rust could not be found. Installing..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+# Verify and install Nargo if needed
+if ! command -v nargo &> /dev/null
+then
+    echo "Nargo could not be found. Installing..."
+    curl -L https://raw.githubusercontent.com/noir-lang/noirup/main/install | bash
+    source ~/.bashrc
+    noirup
+fi
+
+# compile code here
+echo "Compiling code"
+cd "$BUILD_DIR"
+cargo build --release
+
+echo "Compilation completed"

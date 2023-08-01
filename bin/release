@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "---"
+echo "default_process_types:"
+echo "  web: ./target/release/my_executable"
